@@ -107,3 +107,19 @@ The preview is in draft PR #3. Phase 0 and full phase 1 acceptance are not compl
 - 46 tests pass across content fidelity, toolbar accessibility and real-composer keyboard integration. New coverage checks line-height serialization/reopen, removal of conflicting span height, retained fonts/spacing, selected-block formatting reset, untouched neighboring text, and one-step undo of heading/list normalization. Scoped lint passes.
 - Browser used a temporary isolated production-editor route: double spacing computed to 28px at a 14px font while paragraph margins stayed 14px; unselected paragraph remained 20px line height. Clear formatting removed font/color/bold while keeping text and 1em margins; Undo restored Georgia and bold. Screenshot: research workspace `memail-line-height.jpg`. Temporary route removed; no user drafts edited.
 - Production build includes TypeScript validation. Broad mobile toolbar and recipient-client rendering acceptance remain open.
+
+
+## Navigation and workspace controls
+
+- 28 targeted tests pass across rail keyboard behavior, workspace reading-layout selection, saved searches and native navigation leave guards/badge names. Theme-package tests pass separately. Scoped lint and the final production build including TypeScript pass; existing Turbopack filesystem-tracing warnings remain.
+- Browser confirmed Down moves focus from Mail to Calendar without navigating; bottom reader is positioned below the 320px list when a demo conversation is loaded. Native Side layout restored after review.
+- Narrow panels were checked at 390px and 320px; the 320px preferences panel stays at x12..308 and y24..496, with internal scrolling and a visible close control. After adding the explicit Tailwind source, confirmed header container-type is inline-size and labels appear on a wide pane.
+- Screenshot: research workspace `memail-navigation-polish.jpg`. No draft edited and no mail sent. Production was not redeployed in this pass. Full dark/RTL/zoom visual matrix remains outstanding; RTL focus direction has unit coverage.
+
+
+## Native workspace identity
+
+- 59 targeted tests pass across glyph compatibility, theme package/contrast, layout controls, rail focus, native leave guards, nested mail route highlighting, unread accessible names, plugin navigation and native return-to-list behavior. Scoped ESLint has no errors; the existing mail-app ref-cleanup warning remains.
+- Production build including TypeScript passes; existing Turbopack filesystem-tracing warnings remain.
+- Browser verified the 80px labeled dock, actual split mail reading/attachments, active Mail state on nested routes, and the shared workspace header. Phone page width equals the 390px viewport. Light and dark appearance were inspected; a stale development hot-reload rule was cleared with a reload, confirming dark dock background rgb(16,24,19) and foreground rgb(230,240,230). Original Light preference restored afterward.
+- Screenshots: research workspace `memail-native-workspace.jpg` and `memail-native-workspace-dark.jpg`. No draft was edited and no email sent. Full RTL/zoom and the remaining app-specific redesign acceptance remain open. Production is unchanged.
