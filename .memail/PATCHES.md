@@ -1,5 +1,23 @@
 # Downstream patch inventory
 
+## Product identity and review governance (0.2 preview)
+
+- Memail branding defaults in `lib/admin/types.ts`, the config API, root metadata,
+  setup wizard, Lite configuration/export, About, demo reader and Files preview
+  now resolve the original Memail assets. Custom admin/environment/domain values
+  retain precedence. Plugin app-info uses Memail as its offline display-name
+  fallback; upstream product/version protocol fields remain compatible.
+- `.memail/build-brand.mjs` renders SVG marks/wordmarks into favicon/PWA,
+  Apple and social PNG assets. Legacy Bulwark assets remain for existing
+  references and attribution. Recheck branding, manifests, subpaths and custom
+  domain overrides after upstream merges.
+- `app/globals.css` includes directional Heroicons in RTL mirroring alongside
+  legacy plugin glyph classes. Filename, formatting-menu and reader/mobile
+  integration selectors follow the current accessible surfaces.
+- CI shards feed an always-evaluated Vitest gate; native Git checks keep their
+  own Node runner. Dedicated org/HA/enterprise rigs require explicit opt-in.
+  Review permissions and the protected check names when merging upstream CI.
+
 Base: Bulwark Webmail, https://github.com/bulwarkmail/webmail.
 
 | Change | Location | Upstream impact | Verification |
