@@ -123,3 +123,115 @@ The preview is in draft PR #3. Phase 0 and full phase 1 acceptance are not compl
 - Production build including TypeScript passes; existing Turbopack filesystem-tracing warnings remain.
 - Browser verified the 80px labeled dock, actual split mail reading/attachments, active Mail state on nested routes, and the shared workspace header. Phone page width equals the 390px viewport. Light and dark appearance were inspected; a stale development hot-reload rule was cleared with a reload, confirming dark dock background rgb(16,24,19) and foreground rgb(230,240,230). Original Light preference restored afterward.
 - Screenshots: research workspace `memail-native-workspace.jpg` and `memail-native-workspace-dark.jpg`. No draft was edited and no email sent. Full RTL/zoom and the remaining app-specific redesign acceptance remain open. Production is unchanged.
+
+
+## Sidebar hierarchy and saved views
+
+- The broader layout run passed 199 tests across 43 files, including shared folders, nesting, counts, plugin navigation and touch menus. After the final memoization and ArrowDown changes, 14 focused tests passed across saved views, folder icons and menu access.
+- Browser reviewed the production Sidebar in a temporary isolated route with fixture mailboxes and local search callbacks. Saved-view selection updated its current state. The 288px sidebar fits at 320px and 390px; the temporary fixture's adjacent explanatory text overflowed at 320px, so this is not a full mail-screen mobile acceptance claim. The fixture was removed and viewport reset.
+- Screenshot: research workspace `memail-sidebar-polish.jpg`. The live app restored the user's open draft during review; further checks used the isolated route. No draft content or saved entries were changed and no mail was sent.
+- Full RTL/zoom/dark and real-account search acceptance remain open. Production is unchanged.
+
+- Final production build including TypeScript passed after fixture removal; existing Turbopack filesystem-tracing warnings remain. Scoped lint has no errors; the existing mail-app effect-ref warning remains.
+
+
+## Inbox row hierarchy and display controls
+
+- 148 tests passed across 14 files: row rendering, column alignment contracts, pagination, range rows, batch actions, treegrid keyboard behavior, tabs, quick-action labels/placement, memoization/store rendering and scroll resets. Added coverage checks all four native densities, independent preview toggling, semantic dates, clock preference and invalid timestamp handling. An existing batch-test act warning remains.
+- Scoped ESLint passed with no warnings or errors. Production build and TypeScript passed; existing Turbopack filesystem-tracing warnings remain.
+- Browser reviewed the current local demo inbox without opening messages or invoking mail actions. Regular wide rows measured about 57px; native regular stacked rows decreased from about 121px to 97px with one preview line. Keyboard focus inside a row exposes its 36px quick-action tray. Precise timestamp tooltip confirmed.
+- Document width equalled viewport at 390px and 320px. At 320x568, Customize fits x12..308/y24..496, scrolls internally, and retains its close control. Original Regular density and preview setting were restored; temporary viewport override reset. Screenshots: research workspace `memail-inbox-polish.jpg` and `memail-inbox-phone.jpg`.
+- No email or draft content was changed and no mail was sent. Real-account large-mailbox, dark/RTL/zoom and recipient-client acceptance remain open. AI remains deferred; production unchanged.
+
+
+## Reader/composer attachment workflow
+
+- 185 unique targeted checks passed across 19 files over the final broader run and its upload-focused rerun. Coverage includes attachment finder/clear/no-results, filtering hidden files and MIME types, restricted downloads, shrinking collections, bar/cards positioning, Files/download callbacks, draft attachment recovery, pending-save uploads, upload timeout, discard, plugin edits, recipient validation, short panes, inline CID images, composer accessibility and rich content/import. Existing asynchronous React act warnings remain.
+- Production build including TypeScript passed after removing the temporary preview route. Scoped ESLint passed without warnings or errors. Existing Turbopack filesystem-tracing warnings remain.
+- Browser used an isolated route rendering production ReaderAttachments, AttachmentFilename and RichTextEditor with fixture files and local-only body state. This was component review, not full authenticated composer acceptance. Searching found the last collapsed file; clearing restored the list. At 320px the tiles measured 280px and remained inside the page. Viewport reset and temporary route removed. No user draft, mail, or stored attachment was modified.
+- Visual inspection caught undefined shorthand color tokens; they now use native palette variables. Computed attachment border matched native #e4e8e1 at 80% opacity. The sample editor retained Georgia and its 14px paragraph margin. Screenshots: research workspace `memail-reader-composer-components.jpg` and `memail-attachments-phone.jpg`.
+- New attachment-finder labels are English. Full dark/RTL/zoom, real-account upload/download, recipient-client formatting and full reader/composer layout acceptance remain open. AI is deferred and production is unchanged.
+
+
+## Reader details and recipient disclosure
+
+- 86 tests passed across 13 files, including metadata close/Escape/focus, mobile To overflow, BCC overflow, repeat overflow activation, phone timestamp semantics, attachment layout, read hooks, quick-reply return, toolbar layout, plugin remounts, link gates and open-render behavior. Scoped lint and production build including TypeScript passed. Existing asynchronous React act and Turbopack filesystem-tracing warnings remain.
+- Browser checked the already-open local demo message. Details showed two columns in an approximately 882px reader; at 320px viewport its 312px panel used one 280px content column and document width stayed 320px. Closing at the phone breakpoint returned focus to the visible Show details button even though details were first opened on desktop.
+- Phone date is compact (Mon 20:32 in the sample) and its measured right edge was 366px within the 390px viewport. Screenshots: research workspace `memail-reader-details-polish.jpg` and `memail-reader-phone-polish.jpg`. The normal viewport and collapsed-details state were restored. No draft or mail content was changed and no mail was sent.
+- This uses the local demo account, not a real-account acceptance run. Full dark/RTL/zoom, long international recipient sets, plugin-specific details forms and full reader/composer acceptance remain open. Production unchanged; AI deferred.
+
+
+## Composer formatting hierarchy and pasted-font feedback
+
+- The final broader run passed 111 checks across 14 files. A subsequent editor-focused run passed 17 checks, adding complete action-set parity between the full toolbar and expanded compact toolbar (112 unique targeted checks overall). Coverage includes retained selection/font application, custom and inherited font feedback, nested Escape and focus return, roving keyboard access, formatting visibility, HTML/plain text, short panes, Mountain View windows, pending attachment saves, paragraph/blank-line fidelity, links, drops and source import.
+- Production build including TypeScript and scoped ESLint passed. Existing asynchronous React act warnings, TipTap duplicate textDirection warnings and Turbopack filesystem-tracing warnings remain; this pass does not claim to resolve them.
+- Browser used an isolated production RichTextEditor with local sample content. At 320px, collapsed formatting measured about 83px, compared with 137px in the initial implementation; expanded controls measured about 202px and produced no horizontal page overflow. Clicking the sample pasted paragraph correctly displayed Georgia after inherited-font handling was added.
+- Screenshots: research workspace `memail-formatting-polish.jpg` and `memail-formatting-phone.jpg`. Temporary route removed, review tabs closed and viewport reset. No user draft was modified and no mail was sent. This is component visual review, not full real-account composer acceptance.
+- More formatting and its group name are currently English. Full short-height device, dark/RTL/zoom, real-account send/recovery and recipient-client formatting acceptance remain open. AI deferred; production unchanged.
+
+
+## Search, settings finder and Heroicons navigation
+
+- 289 tests passed across 58 files: layout/shared-folder/count/rail/plugin coverage, all search component suites, settings anchors/advanced/phone deep links/plugin pages/palette commands, saved views, batch actions and pagination. New checks cover all-match expansion/reset without toggling Advanced, no-result focus recovery, keyboard navigation, negative filter labels, removal focus and Heroicons adapter compatibility.
+- Production build including TypeScript passed after the temporary chip-review route was removed. Scoped lint passed with no warnings or errors. Existing Vite config-loader and Turbopack filesystem-tracing warnings remain.
+- Browser verified Heroicons in the current local demo workspace. Settings search showed expandable groups of 27 and 11 matches for the sample query; expansion and input/result focus were verified without opening a setting or changing preferences. At 320px, settings page width stayed 320px and clearing no matches returned focus to Search settings.
+- An isolated production SearchChips fixture verified next-criterion focus, final-clear focus to Results preview, and 320px page width. No mailbox query was issued by the fixture. Review tabs closed, temporary route removed and viewport reset. No draft or mail content was modified and no mail was sent.
+- Screenshots: research workspace `memail-heroicons-sidebar.jpg`, `memail-settings-search.jpg`, `memail-settings-search-phone.jpg`, and `memail-search-chips-phone.jpg`. Full dark/RTL/zoom and real-account search/large-settings acceptance remain open. Expansion labels are currently English; filter labels reuse translations. AI deferred; production unchanged.
+
+
+## Shared menu layout and command focus
+
+- 104 checks passed across 14 files: menu keyboard/fit/submenu/touch/hover behavior, composer menus/a11y/short panes, reader flyouts/panel layering, plugin list surfaces, batch actions, folder menus and rail leave guards. Added checks cover typed prefixes, repeat-letter cycling, diacritics, disabled skipping, current submenu scope, search-field ownership, scroll requests and named composer-menu opening/focus return.
+- Production build including TypeScript and scoped ESLint passed after removing the temporary review route. Existing Vite config-loader and Turbopack filesystem-tracing warnings remain.
+- Browser verified the live local demo reader's More actions menu: p moved focus to Pin then Print, and Escape closed it without invoking either action. No mail or draft content was changed.
+- An isolated production menu with local no-op actions was checked at 320x568. The long root panel stayed approximately x68..310/y10..558; type-to-focus scrolled its inner container about 146px to show Print at y477..509. The submenu stayed within x130..310/y484..558. Escape returned to Message actions. Viewport reset, review tab closed and temporary route removed.
+- Screenshots: research workspace `memail-menu-polish.jpg` (native reader) and `memail-menu-phone.jpg` (isolated long menu). Full dark/RTL/zoom/device and plugin-specific interactive-form acceptance remain open. AI deferred; production unchanged.
+
+
+## Files navigation and pane-responsive header
+
+- 83 checks passed across 8 files covering header navigation, shared-folder browsing, sidebar semantics, file picker, plugin surfaces, overlay focus and shared menu keyboard/fit behavior. The five new header checks also passed after the final account-context/layout adjustment. Scoped ESLint and production build including TypeScript passed; existing Vite config-loader, asynchronous React act and Turbopack tracing warnings remain.
+- Isolated browser route rendered the production FilesHeader with local fixture state and no-op file actions. At a 512px desktop pane, header client/scroll widths both measured 510px. At 320px viewport, page client/scroll widths both measured 320px and toolbar widths both measured 294px. Compact path overflow exposed all three intermediate parents. ArrowRight selected Grid and focused its radio; Escape cleared compact search and returned focus to its remounted trigger.
+- Account context was moved above the path after visual review exposed crowding. Root text remains untruncated in the reviewed phone layout. Screenshots: research workspace `memail-files-navigation.jpg` and `memail-files-navigation-phone.jpg`. This is component-level review; real-account WebDAV, full dark/RTL/zoom/device and complete connected-app acceptance remain open.
+- Temporary review route removed, viewport reset and review tab closed. No user draft, email, stored file or account was changed. AI deferred; production unchanged.
+
+
+## Contacts search, filters and list hierarchy
+
+- 71 checks passed across 8 files: list/item, sidebar, app, menus, named buttons, shared shortcuts and plugin surfaces. Five new checks cover linked/named filter disclosure, close/Escape focus return with criteria retained, composition Escape, explicit presence exclusions/combinations, empty-filter recovery and search clear focus. Existing Stalwart photo-filter tests now choose the explicit Yes option.
+- Scoped ESLint and production build including TypeScript passed. Existing Vite config-loader, test navigation/act and Turbopack tracing warnings remain.
+- Isolated browser review rendered the production ContactList with local contact fixtures and no-op mutation/export callbacks. The 320x568 review had page client/scroll widths of 320px, search width about 270px, a 241px filter panel and 148px results pane. Keyboard focus scrolled lower presence controls into view while the sticky Clear/Close row stayed visible. Choosing Has email = No left only the fixture without email; Escape returned to Filters and retained that criterion. Desktop pane review used 576px width.
+- Screenshots: research workspace `memail-contacts-workflow.jpg` and `memail-contacts-workflow-phone.jpg`. Temporary route removed, review tab closed and viewport reset. No stored contacts, emails, drafts or accounts were changed. Real-account address-book task walkthroughs, full dark/RTL/zoom/device acceptance and remaining connected-app work are open. AI deferred; production unchanged.
+
+
+## Calendar navigation and application-wide Heroicons
+
+- 204 unique checks passed across 21 files across the Calendar/icon run and final cross-app smoke run. Coverage includes all built-in glyph exports, icon refs/strokes/fill/accessible naming, stored/lazy icon compatibility, phone view navigation and Tasks gating, calendar checkbox state/shared context/focus return, app unsaved-editor guards, time-grid keyboard/range/tab order, Calendar plugin/print/phone surfaces, shared menus, composer accessibility/menus, Contacts filters, Files header and settings search.
+- An initial Calendar editor-guard test exposed a test selector collision with Heroicons' vendor `data-slot="icon"`. Narrowing four time-grid test helpers to `[role="button"][data-slot]` resolved it. The full Calendar run then passed 141 checks; the final smoke run passed 71, including eight Calendar toolbar checks repeated after the phone-row refinement. Scoped ESLint and production build including TypeScript passed. Existing Vite config-loader and Turbopack filesystem-tracing warnings remain.
+- Browser review used production CalendarToolbar, CalendarMonthView and CalendarSearchField with local fixture date/view/visibility state, no-op event/mutation callbacks and editing disabled. At 672px pane width the desktop toolbar client/scroll widths were both 670px. At 320x568 the page client/scroll widths were both 320px; all five view labels fit. ArrowRight focused/selected Week, Home returned to Month. Calendar visibility opened at approximately x99/y219, 200x170px; toggling the shared fixture reported checked=true and Escape restored Calendars focus.
+- Screenshots: research workspace `memail-calendar-heroicons.jpg` and `memail-calendar-heroicons-phone.jpg`. Temporary review route removed, viewport reset and review tab closed. The fixture rendered the month grid only; live week/day/agenda acceptance was not claimed. No stored event, contact, email, draft or account changed.
+- Existing custom/plugin/brand icon choices remain compatible; aliases without exact Heroicons equivalents use related official symbols. Real-account calendar task walkthroughs and full dark/RTL/zoom/device acceptance remain open. AI deferred; production unchanged.
+
+
+## Calendar search layout and pane-local navigation
+
+- 102 unique checks passed across 7 files across the broader Calendar run and final search/toolbar rerun. Coverage includes simultaneous pane focus boundaries, unique result heading IDs, Home/End/Escape, modified/composition keys, clear/no-result recovery, forwarded refs, event/context callbacks, semantic display-wall timestamps, refresh busy state, phone search trigger restoration, search-hook matching/loading, unsaved-editor guards, print, plugin surfaces and Heroicons compatibility. Scoped ESLint and production build including TypeScript passed; existing Vite config-loader and Turbopack tracing warnings remain.
+- Browser used an isolated client-only fixture with production CalendarToolbar, CalendarSearchField and CalendarSearchResults, local queries/results and no-op event/account mutations. The warm development server initially served old SSR component markup against current client code; the review fixture was changed to client-only rendering. This review does not establish SSR integration acceptance.
+- Desktop dark-theme review used an 896px pane. At 320x568 the page client/scroll widths were both 320px and the result pane client/scroll widths were both 286px. Long titles used two lines; date/time, wrapped calendar/location names and recurrence metadata stayed readable. Down entered the first result, End scrolled to the last, and Escape restored the same field without clearing the query. Subsequent field Escapes cleared then dismissed search and returned focus to the remounted Search trigger. The final phone search variant omits the redundant actions row.
+- Screenshots: research workspace `memail-calendar-search.jpg` and `memail-calendar-search-phone.jpg`. Fixture routes removed, review tabs closed and viewport reset. No stored event, email, draft, contact or account changed. Real-account search/reconnect, complete breakpoint/RTL/zoom/device and SSR walkthroughs remain open. AI deferred; production unchanged.
+
+
+## Files details actions and narrow preview headers
+
+- 72 unique checks passed across 9 files across the broader Files run and final details/preview/browser rerun. Coverage includes overlay Tab containment and Escape return, desktop focus behavior, nested preview close order, action callbacks, device/symlink restrictions, edit precedence/favorite state, selection preservation, plugin surfaces, preview content/sanitization, existing overlay restoration and Heroicons compatibility. The metadata region's Tab stop and select/composition/modified-arrow guards are checked. Scoped ESLint and production build including TypeScript passed; existing Vite config-loader and Turbopack tracing warnings remain.
+- Isolated client-only browser review rendered production FileDetailsPanel and PreviewShell with a local shared-file fixture and no-op file mutation/download callbacks. Desktop details retained opener focus. At 320x568 the page client/scroll widths were both 320px; metadata client/scroll widths were both 256px. Page Down scrolled metadata while the footer stayed approximately y447..555. The preview header measured 320px client/scroll width and 85px height with previous/next, extra action, Download and Close visible.
+- Escape closed the nested preview first, kept Details open and returned focus to Preview. Another Escape closed Details and returned to Show file details. All reviewed host glyphs reported the Heroicons family. Screenshots: research workspace `memail-files-details.jpg`, `memail-files-details-phone.jpg`, and `memail-files-preview-phone.jpg`.
+- Fixture routes removed, review tab closed and viewport reset. No real file, event, contact, email, draft or account changed. Real-account WebDAV/share/download walkthroughs and full breakpoint/RTL/zoom/device/plugin-widget acceptance remain open. AI deferred; production unchanged.
+
+
+## Contact profile layout and section navigation
+
+- 65 checks passed across 8 files covering contact details, plugin surfaces, app/menu/button naming, print and Heroicons compatibility. New checks cover pane-local section activation, unique named headings, boundary/RTL/composition/modifier navigation, persistent action placement, focusable property scrolling, copied-value descriptions and omission of unavailable sections. Scoped ESLint and production build including TypeScript passed; existing Vite config-loader, test navigation and Turbopack tracing warnings remain.
+- An isolated client-only ContactDetail fixture was checked through browser DOM/accessibility controls. At 1024x768, the page client/scroll widths were both 1024px and properties had two approximately 447px columns. At 320x568, the page widths were both 320px, the property region widths were both 286px, it retained 211px height, and cards used one approximately 254px column. Header actions measured 262px client/scroll width in a 70px wrapped row.
+- Choosing Notes scrolled the property region about 750px and focused that profile's named Notes section. Home returned section-navigation focus to Contact details without invoking an action. Host glyphs reported the Heroicons family. Native mutation/call/compose actions were not invoked during browser review.
+- Screenshot capture repeatedly reported unavailable on the original and a fresh review tab, including an explicit desktop viewport; DOM/accessibility review succeeded. No screenshot or visual acceptance is claimed for this increment. Fixture routes removed, both review tabs closed and viewport reset. No stored contact, account, email, draft, event or file was changed. Real-account, complete visual, breakpoint/RTL/zoom/device acceptance remain open. AI deferred; production unchanged.

@@ -18,17 +18,27 @@ Acceptance: named app destinations, visible active app, usable short-height rail
 
 ## 2. Inbox and navigation
 
+Progress: native sidebar hierarchy, expanded primary glyph coverage, desktop/keyboard folder options and account-scoped saved views are implemented for review. Inbox row hierarchy, responsive preview depth, precise date tooltips and all four native spacing controls are also implemented for review. Remaining phase acceptance below is still open.
+
 Make saved views first-class navigation; clarify folders, labels and account hierarchy; unify selection, hover and batch actions. Add custom views and sender-focused triage using native JMAP filters. Preserve missing-folder recovery and shared-account boundaries. Loaded-page counts must not be presented as mailbox-wide totals; unread must not be treated as unfinished work.
 
 Acceptance: keyboard/mouse/touch triage, large-mailbox pagination and virtualization, account switching, reversible actions, and useful loading/error/empty states.
 
 ## 3. Reader and composer
 
+Progress: attachment finder and responsive grids, extension-preserving composer chips, reader subject wrapping and composer field polish are implemented for review. Reader metadata now has pane-responsive cards, recipient overflow disclosure, close/Escape focus return and compact phone dates. Native composers have a compact expandable formatting strip and inherited pasted-font feedback, with action parity and keyboard coverage. Draft/upload/content regressions pass targeted checks; full phase acceptance remains open.
+
 Unify conversation metadata, attachments, action hierarchy, reply transitions and compose layout. Preserve and improve rich paste, Markdown/HTML import, fonts, spacing, undo and draft recovery using real Word, Docs and LLM samples. Preserve identities, signatures, quoted originals, inline images and scheduling.
 
 Acceptance: save/reopen/reload/account-switch recovery; reply/forward correctness; attachment and formatted-text round trips; sanitized received HTML; documented document-layout limits.
 
 ## 4. Search, settings and connected apps
+
+Progress: settings finder expansion, keyboard/focus recovery, active-filter controls and shared menu spacing/type-to-focus are implemented for review. Heroicons cover built-in application exports.
+
+Files has pane-responsive navigation, persistent details actions, keyboard-scrollable metadata, overlay focus handling and phone preview headers. Contacts has explicit presence filters, search recovery, persistent profile actions, pane-responsive property cards and local section navigation.
+
+Calendar has separated phone navigation, keyboard view selection, accessible visibility controls and pane-responsive desktop tools. Its search has local focus boundaries, responsive rows, unique section headings and close recovery. Remaining connected-app consistency and full phase acceptance remain open.
 
 Unify saved and advanced search, organize settings by task, and bring Calendar/Contacts/Files into the same navigation and menu system. Improve shortcut discovery and focus return. Translate downstream strings and verify RTL, zoom, reduced motion, mobile safe areas and touch targets.
 

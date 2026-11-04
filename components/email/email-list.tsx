@@ -476,13 +476,15 @@ export function EmailList({
       // A mail without a preview draws a one-line "No preview available",
       // a line (23px) shorter than a real one.
       const emptyPreview = !!latest && !cleanPreview(latest.preview) && !latest.searchSnippet?.preview;
-      size += emptyPreview ? 36 - 23 : 36;
+      // Native regular rows use one preview line; keep the unmeasured
+      // estimate aligned with that shape. Relaxed and legacy rows retain two.
+      size += !mountainViewList && density === 'regular' ? 12 : (emptyPreview ? 36 - 23 : 36);
     }
     // The chip row (attachments, verification code): a 22px chip plus 6px margin.
     const hasCode = !!latest && showVerificationCodes && !!listVerificationCode(latest);
     if (latest && (hasCode || (onOpenAttachment && listRowShowsChips(latest, loadAttachments)))) size += 28;
     return size;
-  }, [density, isFocusedMailLayout, showPreview, showVerificationCodes, items, onOpenAttachment, loadAttachments]);
+  }, [density, isFocusedMailLayout, mountainViewList, showPreview, showVerificationCodes, items, onOpenAttachment, loadAttachments]);
 
   // Stable per list, so the virtualizer does not rebuild every row's
   // measurement on each scroll render.
@@ -1135,7 +1137,6 @@ export function EmailList({
       </div>
 
       {/* Advanced Search Filter Chips */}
-      {!isFilterEmpty(searchFilters) && (
         <SearchChips
           filters={searchFilters}
           onRemoveFilter={(key) => {
@@ -1147,8 +1148,8 @@ export function EmailList({
             clearSearchFilters();
             if (client) advancedSearch(client);
           }}
+          onEmptyFocus={() => parentRef.current?.focus()}
         />
-      )}
 
       {/* How long Trash and Junk keep mail, and Recover deleted items from the account's own Trash, on one line */}
       {(currentMailbox?.role === 'trash' || currentMailbox?.role === 'junk') && <FolderRetentionLine mailbox={currentMailbox} />}
