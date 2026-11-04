@@ -7,7 +7,12 @@ name: "CI: Perf guard"
 
 on:
   push:
+    branches: [main]
   pull_request:
+
+concurrency:
+  group: memail-perf-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 # The job builds and runs the checked-out code; a compromised step must not
 # hold a token that can write to the repository.

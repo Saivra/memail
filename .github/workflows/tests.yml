@@ -2,7 +2,12 @@ name: "CI: Unit tests"
 
 on:
   push:
+    branches: [main]
   pull_request:
+
+concurrency:
+  group: memail-unit-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 # The job builds and runs the checked-out code; a compromised step must not
 # hold a token that can write to the repository.
@@ -10,10 +15,14 @@ permissions:
   contents: read
 
 jobs:
-  vitest:
-    name: Vitest
+  unit-shards:
+    name: Vitest shard ${{ matrix.shard }}/4
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -33,7 +42,24 @@ jobs:
         # forks + a small worker count keeps the load-sensitive component tests
         # from timing out on the shared runners; the longer per-test timeout
         # covers the jsdom-heavy suites.
-        run: npx vitest run --pool=forks --maxWorkers=2 --testTimeout=15000
+        run: npx vitest run --pool=forks --maxWorkers=2 --testTimeout=15000 --shard=${{ matrix.shard }}/4
+
+  vitest:
+    name: Vitest
+    needs: unit-shards
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every shard to pass
+        env:
+          SHARD_RESULT: ${{ needs.unit-shards.result }}
+        run: test "$SHARD_RESULT" = success
+
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
 
       - name: Verify upstream Git merge helper
         run: node --test .memail/sync-upstream.test.mjs

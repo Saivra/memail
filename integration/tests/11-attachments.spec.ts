@@ -103,7 +103,8 @@ test.describe('Cross-account attachments', () => {
 
     // The inline cid: image resolves to a blob URL fetched from bob's account.
     // Pre-fix the fetch 404s and it falls back to the data:image/gif placeholder.
-    const img = page.frameLocator('iframe[title="Email content"]').locator('img').first();
+    // The reader names its frame with the message subject, not a fixed title.
+    const img = page.frameLocator('[data-tour="email-viewer"] iframe').locator('img[alt="pic"]');
     await expect
       .poll(async () => (await img.getAttribute('src').catch(() => '')) ?? '', { timeout: 15000 })
       .toMatch(/^blob:/);

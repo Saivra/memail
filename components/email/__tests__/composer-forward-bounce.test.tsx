@@ -212,7 +212,7 @@ describe('forwarding a bounce', () => {
       />
     );
 
-    expect(screen.getByText('Email.eml')).toBeInTheDocument();
+    expect(screen.getByRole('button',{name:/^Email\s*\.eml/})).toHaveTextContent('Email.eml');
     expect(screen.queryByText('attachment')).not.toBeInTheDocument();
 
     fireEvent.paste(screen.getByPlaceholderText('to_placeholder'), {

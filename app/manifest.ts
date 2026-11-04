@@ -46,7 +46,7 @@ export default async function manifest(): Promise<ExtendedManifest> {
   const appName =
     branded<string>("appName", "") ||
     process.env.NEXT_PUBLIC_APP_NAME ||
-    "Bulwark Webmail";
+    "Memail";
 
   const shortName = branded<string>("appShortName", "") || appName;
   const description =

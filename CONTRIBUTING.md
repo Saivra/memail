@@ -1,5 +1,8 @@
 # Contributing to Memail
 
+Follow [community conduct](CODE_OF_CONDUCT.md) and [review governance](docs/GOVERNANCE.md).
+Main requires an up-to-date PR and passing CI, including for the owner.
+
 Memail is Saivra's downstream fork of Bulwark. Workflow, accessibility, composition, localization and JMAP compatibility contributions are welcome.
 
 ## Development

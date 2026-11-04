@@ -42,7 +42,7 @@ test.describe('phone layout', () => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
     await expectOnScreen(page.locator('[data-mobile-mail-header]'), width);
     // The account button is the header's last control.
-    await expectOnScreen(page.locator('[data-testid="account-switcher"]').first(), width);
+    await expectOnScreen(page.locator('[data-mobile-mail-header] [data-testid="account-switcher"]'), width);
     await expectOnScreen(emailItem(page, subject).first(), width);
   });
 
