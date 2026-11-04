@@ -4014,14 +4014,14 @@ ${printWatermark ? printWatermark.html : ''}
   if (!email) {
     if (isDemoMode) {
       const logoSrc = withBasePath(resolvedTheme === 'dark'
-        ? '/branding/Bulwark_Logo_with_Lettering_White_and_Color.svg'
-        : '/branding/Bulwark_Logo_with_Lettering_Dark_Color.svg');
+        ? '/branding/memail/wordmark-dark.svg'
+        : '/branding/memail/wordmark.svg');
       return shell(
         <div className="flex-1 min-w-0 flex flex-col items-center justify-center bg-gradient-to-br from-muted/30 to-muted/50">
           <div className="text-center p-8 max-w-md">
             <img
               src={logoSrc}
-              alt="Bulwark Mail"
+              alt="Memail"
               className="h-12 mx-auto mb-6"
             />
             <h2 className="text-xl font-semibold text-foreground mb-3">{tDemoWelcome('title')}</h2>

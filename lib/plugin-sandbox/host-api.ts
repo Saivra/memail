@@ -1928,7 +1928,7 @@ async function doAppGetInfo(): Promise<AppInfoView> {
   try { config = await fetchConfig(); } catch { config = null; }
   return {
     product: 'Bulwark Mail',
-    name: config?.appName || 'Webmail',
+    name: config?.appName || 'Memail',
     version: process.env.NEXT_PUBLIC_APP_VERSION || '',
     edition: IS_LITE ? 'lite' : 'full',
     stalwartFeatures: config?.stalwartFeaturesEnabled ?? true,

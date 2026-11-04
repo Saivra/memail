@@ -23,6 +23,12 @@ const VIDEO: VideoMode = VIDEO_MODES.includes(process.env.IT_VIDEO as VideoMode)
 
 export default defineConfig({
   testDir: './integration/tests',
+  // Dedicated org/HA/enterprise rigs are not the disposable alice/bob/carol stack.
+  testIgnore: [
+    ...(process.env.IT_ORG_SUITE === '1' ? [] : ['**/19-org-*.spec.ts','**/20-structured-mail.spec.ts']),
+    ...(process.env.IT_HA_SUITE === '1' ? [] : ['**/21-ha-*.spec.ts']),
+    ...(process.env.IT_ENT_SUITE === '1' ? [] : ['**/22-ent-*.spec.ts']),
+  ],
   // next dev compiles routes lazily and each test logs in fresh, so give
   // individual tests and their polling assertions generous headroom.
   timeout: 90_000,

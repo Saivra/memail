@@ -72,7 +72,13 @@ Stored branding can override Memail defaults. The product release is separate fr
 
 ## Contribute and share
 
+The Saivra installation is now [memail.saivra.co](https://memail.saivra.co).
+It requires a configured mail account; it is not the synthetic demo.
+See the [hostname migration notes](docs/DOMAIN-MIGRATION.md).
+
 Read [CONTRIBUTING.md](CONTRIBUTING.md), report bugs in [Issues](https://github.com/Saivra/memail-webmail/issues), and discuss workflows in [Discussions](https://github.com/Saivra/memail-webmail/discussions). Stalwart testing, accessibility, RTL/localization, rich-paste samples and mobile polish are useful contributions.
+
+[Governance and protected reviews](docs/GOVERNANCE.md) · [Brand assets](docs/BRAND.md) · [Bulwark 1.20 compatibility review](.memail/UPSTREAM-REVIEW-1.20.0.md)
 
 If Memail helps you, star the repository, share a tested installation guide, or show your setup in Discussions. Keep private mail and credentials out of screenshots. [Sponsorship setup](SPONSORSHIP.md) records the funding status; no Memail payment destination is active yet.
 

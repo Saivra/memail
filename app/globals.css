@@ -1044,7 +1044,21 @@ optgroup {
 [dir="rtl"] .tabler-icon-arrow-forward-up,
 [dir="rtl"] .tabler-icon-arrow-forward-up-double,
 [dir="rtl"] .tabler-icon-layout-sidebar-left,
-[dir="rtl"] .tabler-icon-layout-sidebar-right {
+[dir="rtl"] .tabler-icon-layout-sidebar-right,
+[dir="rtl"] [data-memail-icon="ChevronLeft"],
+[dir="rtl"] [data-memail-icon="ChevronRight"],
+[dir="rtl"] [data-memail-icon="ChevronsLeft"],
+[dir="rtl"] [data-memail-icon="ChevronsRight"],
+[dir="rtl"] [data-memail-icon="ArrowLeft"],
+[dir="rtl"] [data-memail-icon="ArrowRight"],
+[dir="rtl"] [data-memail-icon="ArrowBigLeft"],
+[dir="rtl"] [data-memail-icon="ArrowBigRight"],
+[dir="rtl"] [data-memail-icon="Undo"],
+[dir="rtl"] [data-memail-icon="Undo2"],
+[dir="rtl"] [data-memail-icon="Redo"],
+[dir="rtl"] [data-memail-icon="Redo2"],
+[dir="rtl"] [data-memail-icon="PanelLeft"],
+[dir="rtl"] [data-memail-icon="PanelRight"] {
   transform: scaleX(-1);
 }
 

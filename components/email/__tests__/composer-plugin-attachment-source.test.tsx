@@ -254,7 +254,7 @@ describe('composer-attachment-source plugin slot', () => {
 
     fireEvent.click(screen.getByTestId('fake-cloud-storage-plugin'));
 
-    expect(await screen.findByText('vacation.jpg')).toBeInTheDocument();
+    expect(await screen.findByRole('button',{name:/^vacation\s*\.jpg/})).toHaveTextContent('vacation.jpg');
   });
 
   it('includes the plugin-supplied attachment (by blobId, no local File) in the next save', async () => {
@@ -270,7 +270,7 @@ describe('composer-attachment-source plugin slot', () => {
 
     render(<EmailComposer onClose={vi.fn()} />);
     fireEvent.click(screen.getByTestId('fake-cloud-storage-plugin'));
-    expect(await screen.findByText('vacation.jpg')).toBeInTheDocument();
+    expect(await screen.findByRole('button',{name:/^vacation\s*\.jpg/})).toHaveTextContent('vacation.jpg');
 
     // Fake timers only from here on - the autosave debounce below needs
     // vi.advanceTimersByTimeAsync, but findBy*'s own internal polling (not

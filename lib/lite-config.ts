@@ -66,18 +66,18 @@ export function applyLiteConfig(raw: unknown, defaults?: { jmapServerUrl?: strin
     : [];
 
   return {
-    appName: str(input.appName, '') || 'Webmail',
+    appName: str(input.appName, '') || 'Memail',
     jmapServerUrl,
     oauthClientId: '',
     oauthIssuerUrl: '',
     oauthScopes: '',
     oauthResource: '',
     rememberMeEnabled: bool(input.rememberMeEnabled, true),
-    faviconUrl: str(input.faviconUrl, '') || '/branding/Bulwark_Favicon.svg',
+    faviconUrl: str(input.faviconUrl, '') || '/branding/memail/mark.svg',
     appLogoLightUrl: str(input.appLogoLightUrl, ''),
     appLogoDarkUrl: str(input.appLogoDarkUrl, ''),
-    loginLogoLightUrl: str(input.loginLogoLightUrl, '') || '/branding/Bulwark_Logo_Color.svg',
-    loginLogoDarkUrl: str(input.loginLogoDarkUrl, '') || '/branding/Bulwark_Logo_White.svg',
+    loginLogoLightUrl: str(input.loginLogoLightUrl, '') || '/branding/memail/mark.svg',
+    loginLogoDarkUrl: str(input.loginLogoDarkUrl, '') || '/branding/memail/mark-dark.svg',
     loginCompanyName: str(input.loginCompanyName, ''),
     loginImprintUrl: str(input.loginImprintUrl, ''),
     loginPrivacyPolicyUrl: str(input.loginPrivacyPolicyUrl, ''),

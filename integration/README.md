@@ -161,6 +161,20 @@ because the UI behaviour is currently incomplete. Worth a look:
 
 ## Environment knobs
 
+The `22-ent-*` specs target a separately provisioned enterprise rig, not this
+disposable Docker stack. They are excluded by default. On that rig, opt in
+with `IT_ENT_SUITE=1` when invoking Playwright directly, alongside its required
+`IT_ENT_PASSWORD`, `IT_ADMIN_PASSWORD`, `IT_ACCOUNT_USERS` and endpoint settings.
+The suite still refuses to run without those credentials; the normal CI job
+does not claim enterprise acceptance.
+
+Organization specs (`19-org-*` and `20-structured-mail`) likewise use their
+own rig: opt in with `IT_ORG_SUITE=1` and its documented credentials. HA specs
+(`21-ha-*`) require `IT_HA_SUITE=1` and a separately provisioned multi-replica
+rig. Opt-in flags affect collection, not credential validation. The default
+Docker CI run covers the core specs through `18-group-sent-copy` and does not
+claim org, HA, structured-mail-rig or enterprise acceptance.
+
 | Var             | Default            | Effect                                                     |
 | --------------- | ------------------ | ---------------------------------------------------------- |
 | `IT_NO_DOCKER`  | unset              | `1` = don't manage docker in global-setup (stack already up) |

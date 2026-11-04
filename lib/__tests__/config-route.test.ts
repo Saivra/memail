@@ -94,7 +94,7 @@ describe('config API route', () => {
   it('should return defaults when no env vars are set', async () => {
     const config = await getConfig();
 
-    expect(config.appName).toBe('Webmail');
+    expect(config.appName).toBe('Memail');
     expect(config.jmapServerUrl).toBe('');
     expect(config.oauthEnabled).toBe(false);
     expect(config.oauthClientId).toBe('');
@@ -107,9 +107,9 @@ describe('config API route', () => {
     expect(config.loginImprintUrl).toBe('');
     expect(config.loginPrivacyPolicyUrl).toBe('');
     expect(config.loginWebsiteUrl).toBe('');
-    expect(config.faviconUrl).toBe('/branding/Bulwark_Favicon.svg');
-    expect(config.appLogoLightUrl).toBe('');
-    expect(config.appLogoDarkUrl).toBe('');
+    expect(config.faviconUrl).toBe('/branding/memail/mark.svg');
+    expect(config.appLogoLightUrl).toBe('/branding/memail/mark.svg');
+    expect(config.appLogoDarkUrl).toBe('/branding/memail/mark-dark.svg');
     expect(config.sourceCodeUrl).toBe('');
   });
 

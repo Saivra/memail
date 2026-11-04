@@ -37,7 +37,7 @@ describe('api.app.getInfo', () => {
     fetchConfig.mockRejectedValueOnce(new Error('offline'));
     const info = await dispatchApiCall(plugin(), 'app.getInfo', []) as { name: string; product: string };
     expect(info.product).toBe('Bulwark Mail');
-    expect(info.name).toBe('Webmail');
+    expect(info.name).toBe('Memail');
   });
 });
 

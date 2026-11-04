@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
   };
 
   const appName =
-    branded<string>('appName', '') || process.env.NEXT_PUBLIC_APP_NAME || 'Webmail';
+    branded<string>('appName', '') || process.env.NEXT_PUBLIC_APP_NAME || 'Memail';
   const jmapServerUrl = configManager.get<string>('jmapServerUrl') || process.env.NEXT_PUBLIC_JMAP_SERVER_URL || '';
   const oauthEnabled = configManager.get<boolean>('oauthEnabled', false);
   const oauthOnly = oauthEnabled && configManager.get<boolean>('oauthOnly', false);
@@ -73,11 +73,11 @@ export async function GET(request: NextRequest) {
       stalwartFeaturesEnabled,
       stalwartJmapPassthroughEnabled,
       devMode: configManager.get<boolean>('devMode', false),
-      faviconUrl: branded<string>('faviconUrl', '/branding/Bulwark_Favicon.svg'),
-      appLogoLightUrl: branded<string>('appLogoLightUrl', ''),
-      appLogoDarkUrl: branded<string>('appLogoDarkUrl', ''),
-      loginLogoLightUrl: branded<string>('loginLogoLightUrl', '/branding/Bulwark_Logo_Color.svg'),
-      loginLogoDarkUrl: branded<string>('loginLogoDarkUrl', '/branding/Bulwark_Logo_White.svg'),
+      faviconUrl: branded<string>('faviconUrl', '/branding/memail/mark.svg'),
+      appLogoLightUrl: branded<string>('appLogoLightUrl', '/branding/memail/mark.svg'),
+      appLogoDarkUrl: branded<string>('appLogoDarkUrl', '/branding/memail/mark-dark.svg'),
+      loginLogoLightUrl: branded<string>('loginLogoLightUrl', '/branding/memail/mark.svg'),
+      loginLogoDarkUrl: branded<string>('loginLogoDarkUrl', '/branding/memail/mark-dark.svg'),
       loginCompanyName: branded<string>('loginCompanyName', ''),
       loginImprintUrl: branded<string>('loginImprintUrl', ''),
       loginPrivacyPolicyUrl: branded<string>('loginPrivacyPolicyUrl', ''),

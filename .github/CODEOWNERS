@@ -1,0 +1,8 @@
+# Review responsibility does not grant repository access.
+* @GMustafa-s
+/.github/ @GMustafa-s
+/lib/admin/ @GMustafa-s
+/lib/jmap/ @GMustafa-s
+/app/api/ @GMustafa-s
+/LICENSE @GMustafa-s
+/NOTICE @GMustafa-s

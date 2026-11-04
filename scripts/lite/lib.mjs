@@ -174,7 +174,7 @@ export function buildLiteConfig(env = {}, { target = "static" } = {}) {
     _comment: stalwart
       ? "Bulwark Lite for Stalwart. Read-only inside the Application bundle: to change it, build your own zip (see LITE-README.md). An empty jmapServerUrl means the Stalwart server that serves this page."
       : "Bulwark Lite runtime configuration. Edit and re-upload; no rebuild needed. See LITE-README.md.",
-    appName: (env.LITE_APP_NAME ?? "").trim() || "Bulwark Webmail",
+    appName: (env.LITE_APP_NAME ?? "").trim() || "Memail",
     jmapServerUrl,
     ...(stalwart || customEndpointSet
       ? { allowCustomJmapEndpoint: parseBool(env.LITE_ALLOW_CUSTOM_ENDPOINT, false) }
@@ -800,7 +800,7 @@ webmail.example.com {
 export function buildReadme({ version, commit, basePath = "", locales, jmapServerUrl = "", demoMode = false }) {
   return `# Bulwark Lite ${version} (${commit})
 
-A static build of Bulwark Webmail: the same mail, calendar, contacts and files
+A static build of Memail: the same mail, calendar, contacts and files
 client, without the Node.js server. Upload this folder to any static host and
 point it at your Stalwart (or other JMAP) server.
 
@@ -860,7 +860,7 @@ ${basePath ? `  Both examples serve root-relative paths, so unzip into \`<web ro
 \`_headers\` also carries the recommended security headers. Adjust
 \`connect-src\` to your JMAP server's origin if you prefer a strict policy.
 
-## What is different from the full Bulwark Webmail
+## What is different from the full Memail
 
 Everything that runs in the browser works: mail, threads, search, compose,
 multiple accounts, calendar, contacts, files, themes, settings export/import,
@@ -1239,7 +1239,7 @@ export function inlineJson(value) {
  * the address bar keeps the deep link and the shell hydrates exactly as it
  * would behind an nginx SPA fallback.
  */
-export function buildStalwartEntry({ locales, shells, defaultLocale = "en", buildId, appName = "Bulwark Webmail" }) {
+export function buildStalwartEntry({ locales, shells, defaultLocale = "en", buildId, appName = "Memail" }) {
   const fallback = locales.includes(defaultLocale) ? defaultLocale : locales[0];
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const script = `
@@ -1266,7 +1266,7 @@ export function buildStalwartEntry({ locales, shells, defaultLocale = "en", buil
   // inside another origin's frame the app would be open to clickjacking.
   var foreignFrame = false;
   try { foreignFrame = window.top !== window.self && window.top.location.origin !== location.origin; } catch (e) { foreignFrame = true; }
-  if (foreignFrame) return fail("Bulwark Webmail cannot be shown inside another site's page. Open it directly.");
+  if (foreignFrame) return fail("Memail cannot be shown inside another site's page. Open it directly.");
 
   function fail(message) {
     function show() {
@@ -1306,7 +1306,7 @@ export function buildStalwartEntry({ locales, shells, defaultLocale = "en", buil
   // Stalwart rewrote the base element to point at the Application's prefix.
   var mount = new URL(document.baseURI).pathname.replace(/[/]+$/, "");
   if (!/^([/][A-Za-z0-9._~-]+)?$/.test(mount)) {
-    return fail("Bulwark Webmail cannot run under " + mount + "/: the mount prefix must be a single path segment such as /webmail.");
+    return fail("Memail cannot run under " + mount + "/: the mount prefix must be a single path segment such as /webmail.");
   }
   var metaTag = document.querySelector('meta[name="oauth-client-id"]');
   var clientId = (metaTag && metaTag.getAttribute("content")) || "";
@@ -1343,7 +1343,7 @@ export function buildStalwartEntry({ locales, shells, defaultLocale = "en", buil
       document.close();
     })
     .catch(function (err) {
-      fail("Bulwark Webmail could not start (" + (err && err.message ? err.message : err) + "). Reload the page; if this keeps happening, the installed bundle may be incomplete.");
+      fail("Memail could not start (" + (err && err.message ? err.message : err) + "). Reload the page; if this keeps happening, the installed bundle may be incomplete.");
     });
 })();
 `;
@@ -1367,7 +1367,7 @@ ${STALWART_OAUTH_META_LITERAL} />
 <script>${script}</script>
 </head>
 <body>
-<div id="bulwark-lite-boot" aria-busy="true"><noscript><p>Bulwark Webmail needs JavaScript.</p></noscript></div>
+<div id="bulwark-lite-boot" aria-busy="true"><noscript><p>Memail needs JavaScript.</p></noscript></div>
 </body>
 </html>
 `;
@@ -1566,7 +1566,7 @@ export function buildStalwartReadme({ version, commit, locales, buildId, demoMod
   const latestUrl = `https://github.com/bulwarkmail/webmail/releases/latest/download/${STALWART_ZIP_NAME}`;
   return `# Bulwark Lite ${version} (${commit}) for Stalwart
 
-Bulwark Webmail as a Stalwart \`Application\`: Stalwart downloads this zip,
+Memail as a Stalwart \`Application\`: Stalwart downloads this zip,
 serves it under a path of its own HTTP listener, and the webmail talks to the
 same server's JMAP, login and token endpoints. There is nothing to configure:
 no server URL, no CORS, no second web server.
@@ -1585,13 +1585,13 @@ list, \`sysApplicationUpdate\` to change and \`sysApplicationDestroy\` to remove
 it) and \`actionUpdateApps\`. Any of these is equivalent:
 
 - Web admin: **Settings > Web Applications > Create**, description
-  \`Bulwark Webmail\`, resource URL \`${url}\`, URL prefix \`/webmail\`; then run
+  \`Memail\`, resource URL \`${url}\`, URL prefix \`/webmail\`; then run
   **Actions > Update applications** (or restart Stalwart).
 - CLI:
 
   \`\`\`bash
   stalwart-cli create Application \\
-    --field description='Bulwark Webmail' \\
+    --field description='Memail' \\
     --field resourceUrl='${url}' \\
     --field 'urlPrefix={"/webmail":true}'
   stalwart-cli create Action/UpdateApps
@@ -1604,7 +1604,7 @@ it) and \`actionUpdateApps\`. Any of these is equivalent:
     "using": ["urn:ietf:params:jmap:core", "urn:stalwart:jmap"],
     "methodCalls": [
       ["x:Application/set", { "create": { "webmail": {
-        "description": "Bulwark Webmail",
+        "description": "Memail",
         "resourceUrl": "${url}",
         "urlPrefix": { "/webmail": true }
       } } }, "0"],

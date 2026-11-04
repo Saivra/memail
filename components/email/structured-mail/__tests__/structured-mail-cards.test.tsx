@@ -257,7 +257,7 @@ describe('StructuredMailCards', () => {
       // No arrow character the bidi algorithm could turn around: an icon between the stops.
       expect(visual.textContent).not.toMatch(/[→←]/);
       const arrow = visual.querySelector('svg');
-      expect(arrow).toHaveClass('tabler-icon-arrow-right');
+      expect(arrow).toHaveAttribute('data-memail-icon', 'ArrowRight');
       expect(arrow!.compareDocumentPosition(stops[1]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
       expect(stops[0].compareDocumentPosition(arrow!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
       // Station names in the leg rows are isolated too.
@@ -268,7 +268,7 @@ describe('StructuredMailCards', () => {
     it('relies on the global mirror for that arrow in RTL', async () => {
       const { readFileSync } = await import('node:fs');
       const css = readFileSync(`${process.cwd()}/app/globals.css`, 'utf8');
-      expect(css).toMatch(/\[dir="rtl"\] \.tabler-icon-arrow-right/);
+      expect(css).toMatch(/\[dir="rtl"\] \[data-memail-icon="ArrowRight"\]/);
     });
 
     it('keeps references, tracking and order numbers, seats and tickets left to right', () => {

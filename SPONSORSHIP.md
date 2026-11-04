@@ -1,5 +1,9 @@
 # Support Memail
 
+Activation is postponed at the owner's request (2026-11-05). No payout account
+or financial onboarding is being created in this phase. Optional future
+profile copy is in [the Sponsors profile draft](docs/SPONSORS-PROFILE.md).
+
 Help by testing releases, reporting reproducible bugs, improving accessibility/localization, writing installation guides or sharing the project.
 
 ## Funding status

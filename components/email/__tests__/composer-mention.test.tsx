@@ -526,6 +526,7 @@ describe('composer with the @ recipient list', () => {
 
   it('lets Escape close the text-style menu without closing the composer', async () => {
     const {onClose} = await renderComposer();
+    fireEvent.click(screen.getByRole('button',{name:'More formatting'}));
     const trigger = screen.getByRole('button',{name:'Text style'});
     fireEvent.click(trigger);
     const menu = screen.getByRole('menu',{name:'Text style'});
