@@ -1,24 +1,26 @@
-# Memail deployment hostname
+# Product website and email client hostnames
 
-The primary Saivra installation is https://memail.saivra.co. It uses the same
-webmail service and Stalwart backend as the earlier hostname. Changing this
-web hostname does not rename email addresses, mail domains, MX records or
-mail-server accounts.
+These are separate services, not a hostname migration:
 
-The earlier https://webmail.saivra.co remains available during migration.
-Browser local storage, IndexedDB, service workers, offline queues and sessions
-are scoped to an origin. A redirect cannot copy them into a new hostname.
-Users should finish or save pending local drafts and offline work at the old
-address, then sign in at the new address and reinstall its PWA if desired.
-Server-backed mail/accounts remain the same; some browser preferences may need
-to be set again. Do not remove the earlier route while users still need it.
+| Hostname | Purpose |
+| --- | --- |
+| https://memail.saivra.co | Public Memail open-source product website, repository and release links. |
+| https://webmail.saivra.co | Saivra's email client, connected to the existing Stalwart backend. |
 
-For another deployment, check OAuth redirect registrations, WebAuthn relying
-party IDs, web-push subscriptions and any explicitly configured public URLs
-before a hostname switch. Do not silently change credential identifiers.
+Client updates replace the webmail application image behind `webmail.saivra.co`
+while retaining its persistent data, environment, accounts and mail backend.
+Do not redirect this hostname to the product website. The product website must
+not proxy the private client, its API or authentication endpoints.
 
-Operations: back up the authoritative zone and web vhost, add the new DNS
-record, validate the zone, provision and verify HTTPS, then point the new
-vhost at the existing loopback service. Test both hostnames and readiness.
-Keep certificate renewal and an Nginx reload hook in place. Do not recreate
-mail storage or the Stalwart service as part of this change.
+The earlier instructions describing a move from webmail to memail were
+incorrect and are superseded by this document. Continue using webmail for
+email. Browser-local drafts, offline queues, sessions and preferences remain
+scoped to their original hostname; a redirect cannot transfer them. If you used
+the temporarily exposed client on the product hostname, do not clear its browser
+storage before recovering any local-only drafts. Server-backed mail and
+accounts remain in the same Stalwart installation.
+
+Keep separate HTTPS vhosts and certificate renewal for both sites. The website
+can serve static assets independently of the Docker Compose webmail service.
+Neither a website change nor a client upgrade requires changing mail domains,
+MX/SPF/DKIM records, recreating accounts, or restarting Stalwart.

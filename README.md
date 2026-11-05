@@ -72,9 +72,10 @@ Stored branding can override Memail defaults. The product release is separate fr
 
 ## Contribute and share
 
-The Saivra installation is now [memail.saivra.co](https://memail.saivra.co).
-It requires a configured mail account; it is not the synthetic demo.
-See the [hostname migration notes](docs/DOMAIN-MIGRATION.md).
+The open-source product website is [memail.saivra.co](https://memail.saivra.co).
+Saivra's email client remains at [webmail.saivra.co](https://webmail.saivra.co)
+and requires an existing mail account; it is not the synthetic demo.
+See the [deployment hostname notes](docs/DOMAIN-MIGRATION.md).
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md), report bugs in [Issues](https://github.com/Saivra/memail-webmail/issues), and discuss workflows in [Discussions](https://github.com/Saivra/memail-webmail/discussions). Stalwart testing, accessibility, RTL/localization, rich-paste samples and mobile polish are useful contributions.
 
